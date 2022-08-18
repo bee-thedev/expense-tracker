@@ -1,0 +1,17 @@
+/*================================ Fonts ========================================*/
+
+@import url('https://fonts.googleapis.com/css2?family=Advent+Pro:wght@600;700&display=swap');
+
+/*===================================== Colors =====================================*/
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Advent Pro', sans-serif;
+}
+
+html{
+    scroll-behavior: smooth;
+}
+
