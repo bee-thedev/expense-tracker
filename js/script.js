@@ -115,13 +115,13 @@ class UI{
         if(this.itemList.length>0){
             console.log(this.itemList)
             total = this.itemList.reduce(function(accummulated, current){
-                console.log(`Total is ${accummulated} and current amount is  ${current.amount}`)
+                // console.log(`Total is ${accummulated} and current amount is  ${current.amount}`)
                 accummulated += current.amount;
                 return console.log(accummulated);
             }, 0);
         }
         this.expenseAmount.textContent = total;
-        return total;
+        return console.log(total);
     }
 }
 
