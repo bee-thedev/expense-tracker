@@ -73,11 +73,12 @@ html{
     color: var(--mainRed);
   }
 
-  .detailed{
+  /* .detailed{
     border: 1px solid black;
     width: 100%;
-    overflow-y: auto;
-  }
+    height: 100%;
+    overflow-y: hidden;
+  } */
   .edit-icon {
     color: var(--mainBlue);
     cursor: pointer;

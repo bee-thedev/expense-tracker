@@ -29,12 +29,96 @@ class UI{
                 self.budgetFeedback.classlist.remove('showItem');
         }, 4000);
     }
+    else{
+        this.budgetAmount.textContent = value;
+        this.budgetAmount.value = "";
+        this.showBalance();
+    }
+    }
+
+    // Show Balance on the designated division
+
+    showBalance(){
+        let expense = this.totalExpense();
+        let total = parseInt(this.budgetAmount.textContent) - expense;
+        this.balanceAmount.textContent = total;
+
+        if(total < 0){
+            this.balance.classList.remove('showGreen', 'showBlack');
+            this.balance.classList.add('showRed');
+        }else if(total > 0){
+            this.balance.classList.remove('showRed', 'showBlack');
+            this.balance.classList.add('showGreen');
+        }else if ( total === 0){
+            this.balance.classList.remove('showGreen', 'showRed');
+            this.balance.classList.add('showBlack');
+        }
+    }
+
+        // Submit Expense Form
+        submitExpenseForm(){
+            const expenseValue = this.expenseInput.value;
+            const amountValue = this.amountInput.value;
+
+            if(expenseValue === "" || amountValue === "" || amountValue < 0){
+                this.budgetFeedback.classList.add("showItem");
+                this.budgetFeedback.classList.innerHTML = `<p> Values cannot be empty or negative</p>`
+                const self = this;
+                setTimeout(function(){
+                     self.expenseFeedback.classList.remove("showItem")
+                },4000)
+            }else{
+                let amount = parseInt(amountValue);
+                this.expenseInput.value = "";
+                this.amountInput.value = "";
+
+                let expense = {
+                    id: this.itemID,
+                    title: expenseValue,
+                    amount: amount
+                }
+                this.itemID++;
+                this.itemList.push(expense);
+                this.addExpense(expense);
+                //Show the balance
+                this.showBalance();
+            }
+        }
+
+        //Add Expense to the list 
+        
+        addExpense(expense){
+            const div = document.createElement('div');
+            div.classList.add('expense');
+            div.innerHTML = `
+            <div class="expense-item d-flex justify-content-between align-items-baseline">
+                <h6 class="expense-title mb-0 text-uppercase list-item">${expense.title}</h6>
+                <h5 class="expense-amount mb-0 list-item">${expense.amount}</h5>
+                <div class="expense-icons list-item">
+                        <a href="#" class="edit-icon mx-2" data-id="${expense.id}">
+                            <i class="fas fa-edit"></i>
+                        </a>
+
+                        <a href="#" class="delete-icon" data-id="${expense.id}">
+                                <i class="fas fa-trash"></i>
+                        </a>
+                </div>
+            </div>
+            `;
+            this.expenseList.appendChild(div);
+        }
+
+
+        // Total expense of all the expenses
+     totalExpense(){
+        let total = 400;
+        return total;
     }
 }
 
     function eventListeners(){
         const budgetForm = document.querySelector(".budget-form");
-        const expenseForm = document.querySelector("#expense-form");
+        let expenseForm = document.querySelector("#expense-form");
         const expenseList = document.querySelector("#expense-list");
 
         // New UI instance 
@@ -43,20 +127,21 @@ class UI{
 
         // Add Budget Listener for bdget submit
 
-        budgetForm,addEventListener('submit',function(event){
+        budgetForm.addEventListener('submit',function(event){
             event.preventDefault();
             ui.submitBudgetForm();
         });
 
         // Add Expense Listener for exense submit
 
-        expenseForm.addEventlistener("submit", function(event){
+        expenseForm.addEventListener("submit", function(event){
             event.preventDefault();
+            ui.submitExpenseForm();
         });
 
         //initiate expense list
 
-        expenseList.addEventlistener("click", function(){
+        expenseList.addEventListener("click", function(){
 
         });
     }
