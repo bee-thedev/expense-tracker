@@ -31,7 +31,7 @@ class UI{
     }
     else{
         this.budgetAmount.textContent = value;
-        this.budgetAmount.value = "";
+        this.budgetInput.value = "";
         this.showBalance();
     }
     }
@@ -61,8 +61,8 @@ class UI{
             const amountValue = this.amountInput.value;
 
             if(expenseValue === "" || amountValue === "" || amountValue < 0){
-                this.budgetFeedback.classList.add("showItem");
-                this.budgetFeedback.classList.innerHTML = `<p> Values cannot be empty or negative</p>`
+                this.expenseFeedback.classList.add("showItem");
+                this.expenseFeedback.classList.innerHTML = `<p> Values cannot be empty or negative</p>`
                 const self = this;
                 setTimeout(function(){
                      self.expenseFeedback.classList.remove("showItem")
@@ -75,7 +75,7 @@ class UI{
                 let expense = {
                     id: this.itemID,
                     title: expenseValue,
-                    amount: amount
+                    amount: amount,
                 }
                 this.itemID++;
                 this.itemList.push(expense);
@@ -111,7 +111,16 @@ class UI{
 
         // Total expense of all the expenses
      totalExpense(){
-        let total = 400;
+        let total = 0;
+        if(this.itemList.length>0){
+            console.log(this.itemList)
+            total = this.itemList.reduce(function(accummulated, current){
+                console.log(`Total is ${accummulated} and current amount is  ${current.amount}`)
+                accummulated += current.amount;
+                return console.log(accummulated);
+            }, 0);
+        }
+        this.expenseAmount.textContent = total;
         return total;
     }
 }
