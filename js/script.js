@@ -150,7 +150,8 @@ class UI{
 
         //initiate expense list
 
-        expenseList.addEventListener("click", function(){
+        expenseList.addEventListener("click", function(event){
+            if(event.target.parentElement.classlist.contains('edit-icon')){
 
         });
     }
