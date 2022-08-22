@@ -148,11 +148,15 @@ class UI{
             ui.submitExpenseForm();
         });
 
-        //initiate expense list
+        //initiate expense list with edit and delete
 
         expenseList.addEventListener("click", function(event){
             if(event.target.parentElement.classlist.contains('edit-icon')){
-
+                ui.editExpense(event.target.parentElement);
+        }
+        else if(event.target.parentElement.classlist.contains('delete-icon')){
+            ui.deleteExpense(event.target.parentElement);
+        }
         });
     }
 
