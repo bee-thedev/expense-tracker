@@ -123,6 +123,17 @@ class UI{
         this.expenseAmount.textContent = total;
         return console.log(total);
     }
+
+    // Edit Expense
+
+    editExpense(element){
+
+    }
+
+    // Delete the expense item 
+    deleteExpense(element){
+
+    }
 }
 
     function eventListeners(){
