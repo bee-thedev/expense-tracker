@@ -127,11 +127,8 @@ class UI{
     // Edit Expense
 
     editExpense(element){
-<<<<<<< HEAD
+
         let id = parseInt(ele.dataset.id);
-=======
-         let id = parseInt(ele.dataset.id);
->>>>>>> 824f3f3630c71c2ec59fb94f40ce4ab6abc5c96a
         let parent = element.parentElement.parentElement.parentElement;
 
         // remove from DOM
