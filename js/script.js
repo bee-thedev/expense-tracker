@@ -130,7 +130,7 @@ class UI{
 
         let id = parseInt(element.dataset.id);
         let parent = element.parentElement.parentElement.parentElement;
-
+        console.log(this.itemList)
         // remove from DOM
 
         this.expenseList.removeChild(parent);
@@ -141,8 +141,10 @@ class UI{
 
         //show value 
 
-        this.expenseInput.value = expense[0].title;
-        this.amountInput.value = expense[0].amount;
+        for(let i=0; i<expense.length; i++){
+            this.expenseInput.value = expense[i].title;
+            this.amountInput.value = expense[i].amount;
+            }
 
         //remove teh item from List
 
