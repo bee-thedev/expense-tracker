@@ -127,7 +127,29 @@ class UI{
     // Edit Expense
 
     editExpense(element){
+         let id = parseInt(ele.dataset.id);
+        let parent = element.parentElement.parentElement.parentElement;
 
+        // remove from DOM
+
+        this.expenseList.removeChild(parent);
+
+        let expense = this.itemList.filter(function(item){
+            return item.id === id;
+        })
+
+        //show value 
+
+        this.expenseInput.value = expense[0].title;
+        this.amountInput.value = expense[0].amount;
+
+        //remove teh item from List
+
+        let tempList =  this.itemList.filter(function(item){
+            return item.id !== id;
+        });
+        this.itemList = tempList;
+        this.showBalance();
     }
 
     // Delete the expense item 
