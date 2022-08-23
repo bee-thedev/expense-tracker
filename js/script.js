@@ -128,7 +128,7 @@ class UI{
 
     editExpense(element){
 
-        let id = parseInt(ele.dataset.id);
+        let id = parseInt(element.dataset.id);
         let parent = element.parentElement.parentElement.parentElement;
 
         // remove from DOM
@@ -155,7 +155,29 @@ class UI{
 
     // Delete the expense item 
     deleteExpense(element){
+        let id = parseInt(element.dataset.id);
+        let parent = element.parentElement.parentElement.parentElement;
 
+        // remove from DOM
+
+        this.expenseList.removeChild(parent);
+
+        let expense = this.itemList.filter(function(item){
+            return item.id === id;
+        })
+
+        //show value 
+        for(let i=0; i<expense.length; i++){
+        this.expenseInput.value = expense[i].title;
+        this.amountInput.value = expense[i].amount;
+        }
+        //remove teh item from List
+
+        let tempList =  this.itemList.filter(function(item){
+            return item.id !== id;
+        });
+        this.itemList = tempList;
+        this.showBalance();
     }
 }
 
